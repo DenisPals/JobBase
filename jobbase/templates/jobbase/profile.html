@@ -1,0 +1,97 @@
+{% extends "jobbase/layout.html" %}
+
+{% block body %}
+    <div class="container mt-5 border-start border-end rounded shadow p-5">
+        <div class="hstack gap-2 ms-4 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#00649A" class="bi bi-person-circle mb-2" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            <h3 class="fw-bold">Profile</h3>
+        </div>
+        <form id="profileForm" onsubmit="return false">
+            <div class="container input-group">
+                <label class="form-label d-block d-md-none col col-12">First & last name:</label>
+                <span class="input-group-text d-none d-md-block">First & last name</span>
+                <input type="text" id="firstName1" class="form-control" required>
+                <input type="text" id="lastName1" class="form-control" required>
+            </div>
+            <div class="container mt-3 input-group">
+                {% if user.employer %}
+                <label class="form-label d-block d-md-none col col-12">Company Headquaters:</label>
+                <span class="input-group-text d-none d-md-block">Company Headquaters</span>
+                {% else %}
+                <label class="form-label d-block d-md-none col col-12">My Location:</label>
+                <span class="input-group-text d-none d-md-block">My location</span>
+                {% endif %}
+                <input type="text" id="autocomplete" class="form-control">
+            </div>
+            {% if user.employer %}
+            <div class="container input-group mt-3">
+                <label class="form-label d-block d-md-none col col-12">Company Name & Foundation Year:</label>
+                <span class="input-group-text d-none d-md-block">Company Name</span>
+                <input type="text" id="companyName1" class="form-control" required>
+                <span class="input-group-text d-none d-md-block">Foundation Year</span>
+                <input type="number" id="foundationYear1" class="form-control" min="578" max="2023" placeholder="Founded in..." required>
+            </div>
+            <div class="container input-group mt-3">
+                <label class="form-label d-block d-md-none col col-12">Company Size:</label>
+                <span class="input-group-text d-none d-md-block">Company Size</span>
+                <select class="form-select form-select" id="companySize1">
+                    <option>0-10</option>
+                    <option>10-100</option>
+                    <option>100+</option>
+                </select>
+            </div>
+            <div class="container input-group mt-3">
+                <label class="form-label d-block d-md-none col col-12">Company Website:</label>
+                <span class="input-group-text d-none d-md-block">Company Website:</span>
+                <input type="text" id="website1" class="form-control">
+            </div>
+            {% endif %}
+        </form>
+        {% if user.employer != True %}
+        <form method="post" enctype="multipart/form-data" id="uploadCVForm">
+            {% csrf_token %}
+            <div class="container mt-3">
+                <input type="file" accept=".pdf" name="cv" class="form-control" id="id_cv">
+                <input type="checkbox" name="active" id="id_active" checked="checked" class="d-none">
+                <select name="user" class="d-none" required id="id_user">
+                    <option value="{{user.id}}"></option>
+                </select>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if CVcurrent %}
+            <div class="container mt-4">
+                <a class="btn btn-outline-success" href="{{ CVcurrent.url }}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="View CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                    </svg>
+                </a>
+            </div>
+        {% elif not CVcurrent and not CVupload and not user.employer %}
+        <div class="container mt-4">
+            <span class="fs-6 fw-bold ms-2">No CV (.pdf) uploaded.</span>
+        </div>
+        {% endif %}
+        
+        {% if CVupload %}
+            <div class="container mt-4">
+                <a href="{{ CVupload.cv.url}}" class="btn btn-outline-success" id="CVUpload" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="View CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                    </svg>
+                </a>
+            </div>
+        {% endif %}
+        <div class="container mt-4">
+            <button type="submit" form="profileForm" class="btn btn-primary btn-lg offset-lg-11 rounded-pill" id="editFormBtn">
+                Save
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+

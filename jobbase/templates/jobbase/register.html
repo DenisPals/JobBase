@@ -1,0 +1,41 @@
+{% extends "jobbase/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+    <div class="alert alert-danger">
+        <h6 class="text-center">{{ message }}</h6>
+    </div>
+    {% endif %}
+    <div class="container-fluid py-5 text-center">
+        <img src="{% static 'jobbase/images/JoBase.svg' %}">
+    </div>
+
+    <div class="container-fluid col-8 col-lg-3 text-center">
+        <h2 class="header pb-3" style="color: #00649A;">Welcome</h2>
+        <form id="registerForm" action="{% url 'register' %}" method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" id="username" autofocus type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group mt-2">
+                <input class="form-control" id="email" type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group mt-2">
+                <input id="password0" class="form-control d-none" type="password" name="password" placeholder="Password" minlength="6" required>
+            </div>
+            <div class="form-group mt-2">
+                <input id="password1" class="form-control d-none" type="password" name="confirmation" placeholder="Confirm Password" minlength="6" required>
+            </div>
+            <div>
+                <select class="form-select mb-3 mt-2 d-none" id="status" name="status">
+                    <option>Employer</option>
+                    <option>Job seeker</option>
+                </select>
+            </div>
+            <input type="button" class="btn btn-primary btn-sm mt-2" id="continueBtn" value="Continue">
+        </form>
+        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "jobbase/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="container-fluid p-5 mt-4 shadow-sm" id="searchBarContainer">
+        <div class="row m-4">
+            <div class="col-lg-4 offset-lg-2">
+                <label for="whatInput" class="form-label searchBarLabel"><h6>What ?</h6></label>
+                <input id="whatInput" type="text" class="form-control" placeholder="Enter your profession" required>
+            </div>
+            <div class="col-lg-4" id="searchInputDiv"> 
+                <label for="autocomplete" class="form-label searchBarLabel"><h6>Where ?</h6></label>
+                <input id="autocompletePlaceholder" type="text" class="form-control" placeholder="Enter a location" required>
+            </div>
+  
+            <div class="col-lg-1">
+                <button class="btn btn-light p-3 mt-4 container-fluid" id="findJobsBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00649A" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 p-5" id="main">
+    </div>
+
+    <div class="container" id="SeekerModal">
+        <button class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#modal2" id="SmodelButton">Open</button> 
+        <div class="modal fade" id="modal2" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Profile</h3>
+                    </div>
+                    <div class="modal-body" id="modelBody">
+                        <form id="createProfileForm">
+                            <div class="container">
+                                <label for="firstName" class="form-label">First name</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="container mt-3">
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                            <div class="container mt-3">
+                                <label for="autocomplete" class="form-label" id="autocompleteLabel">My location</label>
+                                <input type="text" id="autocomplete" class="form-control">
+                            </div>
+                        </form>
+                        <div class="modal-footer mt-5">
+                            <button class="btn btn-primary" form="createProfileForm" type="submit" id="formSubmitbtn">Submit</button>
+                            <button class="class btn btn-primary d-none" data-bs-dismiss="modal" id="dismissModal"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#modal4" id="applyModaBtn">Open</button> 
+        <div class="modal fade" id="modal4">
+            <div class="modal-dialog modal-xl modal-fullscreen-md-down modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header shadow-sm">
+                        <div class="container mt-2 p-4">
+                            <h3 id="applyModalHeader"></h3>
+                            <h4 id="applyModalCompany"></h4>
+                        </div>
+                    </div>
+                    <div class="modal-body" id="applyModalBody">
+                        <div class="container mt-3 p-5" id="applyModalDetails">
+                        </div>
+                        <div class="container m-2 p-5" id="applyModalJDescription">
+                        </div>
+                        <div class="div px-4" id="applyAllContent">
+                            <div class="container mt-5 px-4">
+                                <input type="text" class="form-control disabled" id="namefieldDisabled" readonly>
+                            </div>
+                            <div class="container mt-3 px-4">
+                                <input type="text" class="form-control disabled" id="locationDisabled" readonly>
+                            </div>
+                            <div class="container mt-3 px-4">
+                                <input type="text" class="form-control" id="emailFieldDisabled" readonly>
+                            </div>
+                            <div class="container mt-5 ms-1 px-4" id="cvBtnGroup">
+                                <div class="btn-group btn-group-sm" id="cvBtnGroupContainer">
+                                    <a class="btn btn-outline-primary" target="_blank" rel="noopener noreferrer" href="#" id="myCV" data-bs-toggle="tooltip" data-bs-title="View CV">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                                        </svg>
+                                    </a>
+                                    <a class="btn btn-success ms-1" href="#" id="anotherCVBtn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-upload mb-1" viewBox="0 0 16 16" data-bs-toggle="tooltip" data-bs-title="Upload another">
+                                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <form method="post" enctype="multipart/form-data" id="uploadCVForm" class="d-none">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="cv_file">Upload CV</label>
+                                    <input type="file" name="cv" accept=".pdf" id="id_cv">
+                                    <input type="checkbox" name="active" id="id_active" class="d-none">
+                                    <input type="number" name="applicationID" id="applicationID">
+                                    <select name="user" class="d-none" required id="id_user">
+                                        <option value="{{user.id}}"></option>
+                                    </select>
+                                </div>
+                                <button type="submit">SubmitBtn</button>
+                            </form>
+                            <div class="container py-3 px-4">
+                                <span id="fileName">No CV uploaded.</span>
+                            </div>
+                            <div class="container mt-5">
+                                <div class="accordion" id="coverLetterAccordion">
+                                    <div class="accordion-item">
+                                      <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <span class="text-primary">Provide a cover letter (optional)</span>
+                                        </button>
+                                      </h2>
+                                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#coverLetterAccordion">
+                                        <div class="accordion-body p-4">
+                                            <textarea id="coverLetter" class="form-control" rows="10" placeholder="Provide a cover letter..."></textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 mt-2 p-5" id="applyModalFooter">
+                        <button class="btn btn-primary me-3 d-none" data-bs-dismiss="modal" id="closeApplyModal"></button>
+                        <button class="btn btn-primary me-3" id="applyJobBtn">Apply</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mobileJobModal">
+        <button class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#modal10" id="openModal10">Open</button> 
+            <div class="modal fade" id="modal10">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-body mt-5 text-center pt-5">
+                            <img class="mb-2" src="{% static 'jobbase/images/JoBaseModalIcon.svg' %}">
+                            <div id="postContentBoxMobile">
+                                <div id="postFocusDivMobile">
+                                    <h4 id="list-item-1Mobile">Position</h4>
+                                    <div id="positionDivMobile">
+                                        <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                                    </div>
+                                    <h4 id="list-item-2Mobile" class="mt-5">Job Details</h4>
+                                    <div id="jobDetailsDivMobile">
+                                        <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                                    </div>
+                                    <h4 id="list-item-3Mobile" class="mt-5">Job Description</h4>
+                                    <div id="jobDescriptionDivMobile" class="px-3">
+                                        <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}
