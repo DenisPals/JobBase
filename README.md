@@ -1,13 +1,8 @@
 # JoBase - A platform for employers and job seekers to meet
-## Distinctiveness and Complexity
+## Complexity
 JoBase is an online job board for employers and job seekers alike to find their desired employees or positions.
-It is not a social network or an e-commerce site, but it is an online job platform with all functions needed to display jobs online and
-receive applications from desired candidates. The application distinguishes itself from other projects in CS50 Web because it:
-
-* **uses 3rd partie APIs**
-* **has more functions and database models**
-* **has a compelling UI**
-* **is mobile responsive**
+It is an online job platform with all functions needed to display jobs online and
+receive applications from desired candidates.
 
 Some of the greater challenges were:
 * The implementation of Google Places API. Though the documentation for Google Places API is very straightforward, the option to implement multiple search bars using the autocomplete function in one document (html page) is (as far as I am aware) not mentioned. After multiple trials, I decided to create a function that will move the search bar or better said swap the html id of the input field depending on where the user currently is. 
