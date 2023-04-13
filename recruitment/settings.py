@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure--tjmg5q2*cwm1c1frsd*n$n&o#)l!fte!g0lk@)ff4a-eh%y*@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cs50web-final-project.ew.r.appspot.com']
 
 
 # Application definition
