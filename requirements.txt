@@ -34,8 +34,7 @@ openpyxl
 packaging                              
 pandas                              
 pandas-stubs                               
-Pillow                              
-protobuf                              
+Pillow                                                       
 psycopg2                              
 Pygments                              
 pymdown-extensions                               
