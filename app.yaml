@@ -25,7 +25,7 @@ handlers:
     upload: favicon\.ico
 
   - url: /static
-    static_dir: public
+    static_dir: jobbase/static/jobbase
 
   - url: /.*
     secure: always
