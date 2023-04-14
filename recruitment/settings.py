@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure--tjmg5q2*cwm1c1frsd*n$n&o#)l!fte!g0lk@)ff4a-eh%y*@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs50web-final-project.ew.r.appspot.com']
-
+ALLOWED_HOSTS = ['cs50web-final-project.ew.r.appspot.com', '127.0.0.1']
 
 # Application definition
 
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +77,18 @@ WSGI_APPLICATION = 'recruitment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'heroku_5079739d4ffc25f',  
+        'USER': 'bbe2ebf8f8b03c',  
+        'PASSWORD': 'b99a6d33',  
+        'HOST': 'eu-cdbr-west-03.cleardb.net',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
+}  
 
 AUTH_USER_MODEL = "jobbase.User"
 
@@ -124,11 +129,18 @@ USE_TZ = True
 
 STATIC_URL = 'https://storage.googleapis.com/379368953291/static/'
 
-# Base url to serve media files
-MEDIA_URL = '/media/'
+from google.oauth2 import service_account
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR,'credential.json')
+)
 
-# Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+DEFAULT_FILE_STORAGE="storages.backends.gcloud.GoogleCloudStorage"
+GS_PROJECT_ID = 'cs50web-final-project'
+GS_BUCKET_NAME = '379368953291'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+MEDIA_URL = "https://storage.googleapis.com/379368953291/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
