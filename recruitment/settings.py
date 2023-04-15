@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IS_HEROKU = "DYNO" in os.environ
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--tjmg5q2*cwm1c1frsd*n$n&o#)l!fte!g0lk@)ff4a-eh%y*@'
+SECRET_KEY = ''
 
 if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ["SECRET_KEY"]
@@ -86,18 +86,6 @@ WSGI_APPLICATION = 'recruitment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {  
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'heroku_cf343b2e276ff02',  
-        'USER': 'bc10d0f95a920d',  
-        'PASSWORD': '3d635b3d',  
-        'HOST': 'eu-cdbr-west-03.cleardb.net',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
-    }  
-}  
 
 AUTH_USER_MODEL = "jobbase.User"
 
@@ -137,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'https://storage.googleapis.com/379368953291/static/'
+STATIC_URL = ''
 
 from google.oauth2 import service_account
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
@@ -145,11 +133,11 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 )
 
 DEFAULT_FILE_STORAGE="storages.backends.gcloud.GoogleCloudStorage"
-GS_PROJECT_ID = 'cs50web-final-project'
-GS_BUCKET_NAME = '379368953291'
-MEDIA_ROOT = "media/"
-UPLOAD_ROOT = 'media/uploads/'
-MEDIA_URL = "https://storage.googleapis.com/379368953291/"
+GS_PROJECT_ID = ''
+GS_BUCKET_NAME = ''
+MEDIA_ROOT = ""
+UPLOAD_ROOT = ''
+MEDIA_URL = ""
 
 
 

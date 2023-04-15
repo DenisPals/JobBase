@@ -27,3 +27,4 @@ In models.py there are models for CVs, job seeker profiles, employer profiles, j
 
 ## How to run
 This web application is deployed on heroku but rather more a hobby project. JobBase can be found [here](https://jobbase.herokuapp.com/).
+API keys, Credentials, etc. have been omitted, this is not the production repository.

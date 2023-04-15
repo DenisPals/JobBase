@@ -22,10 +22,10 @@ from recruitment.settings import BASE_DIR
 
 YOUR_DOMAIN = 'https://jobbase.herokuapp.com'
 # This is your test secret API key.
-stripe.api_key = 'sk_test_51LyumzJDuT7kCtc6Fzg2NCJPRwDpx9mVApdtih5ADgdluK6C1LMr71INGC6G1zzg0IpTaNcUonzQuXkDiWK5nmf7004742kG9K'
+stripe.api_key = ''
 
 # This is your Stripe CLI webhook secret for testing your endpoint locally.
-endpoint_secret = 'whsec_xKZAa2VMnqNOpQbMegiFsjx9omxpQUuo'
+endpoint_secret = ''
 
 
 def index(request):
