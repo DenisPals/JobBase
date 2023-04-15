@@ -25,7 +25,7 @@ YOUR_DOMAIN = 'https://jobbase.herokuapp.com'
 stripe.api_key = 'sk_test_51LyumzJDuT7kCtc6Fzg2NCJPRwDpx9mVApdtih5ADgdluK6C1LMr71INGC6G1zzg0IpTaNcUonzQuXkDiWK5nmf7004742kG9K'
 
 # This is your Stripe CLI webhook secret for testing your endpoint locally.
-endpoint_secret = 'whsec_aadba8d51ec453d2c6b5e6f396fef3c2b220d24204530fcdaff877cd90fd3787'
+endpoint_secret = 'we_1MxD7SJDuT7kCtc6o5zflj99'
 
 
 def index(request):
@@ -431,7 +431,7 @@ def webhook(request):
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
         raise e
-    print("UNTIL HERE")
+
     # Handle the event
     if event['type'] == 'checkout.session.completed':
         charge = event['data']['object']
@@ -440,15 +440,12 @@ def webhook(request):
         today = datetime.today()
         one_duration = today + timedelta(days=60)
         
-        print("EXECUTE A")
-        print(f"EXECUTE B {charge['client_reference_id']}")
         # Set the Post to active and reassign dates in case this post is being reactivated
         post = jobPost.objects.get(id=int(charge['client_reference_id']))
         post.active = True
         post.date = today.strftime('%Y-%m-%d')
         post.expiry = one_duration.strftime('%Y-%m-%d')
         post.save()
-        print(f"EXECUTE C {post}")
         
     # ... handle other event types
 
