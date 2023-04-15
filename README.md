@@ -26,24 +26,4 @@ views.py is the enter server-side code for the project. It handles database mani
 In models.py there are models for CVs, job seeker profiles, employer profiles, job posts, messages, applications, and user-specific applications.
 
 ## How to run
-To fully run the application API keys for stripe and Google Places are needed. Paste your stripe API key into views.py like this:
-> stripe.api_key = 'yourAPIKey'
->
-An endpoint secret key and stripes command-line interface is also needed to test the webhook locally. In [stripes documentation](https://stripe.com/docs/checkout/quickstart), fake credit card details can be copied to test the checkout.
-Paste your endpoint secret key into views.py like this:
-> endpoint_secret = 'yourAPIKey'
->
-For Google Places API go to [Google Cloud console](https://console.cloud.google.com/apis/dashboard), enable google Maps JavaScript API and Places API, and create an API key. The API key needs to be included in a script tag in layout.html which can be found in the templates folder. The tag should be the last element in the head section of layout.html. 
-> `<script src="https://maps.googleapis.com/maps/api/js?key=`**yourAPIKey**`&libraries=places&callback=initAutocomplete" async defer></script>`
->
-
-Having done the previous steps you will need to set up an event listener via stripe CLI, passing in your port number. This should be by default 8000 but please validate this to use the checkout functionality fully. Use this command after enabling stripes CLI:
-> stripe listen --forward-to localhost:8000/webhook
->
-Please also ensure that in views.py under YOUR_DOMAIN your local domain being used.
-> YOUR_DOMAIN = 'http://127.0.0.1:8000'
->
-Then a 
-> simple python manage.py runserver
-> inside of the recruitment folder is sufficient to start the application. 
-Visit [your domain](http://127.0.0.1:8000).
+This web application is deployed on heroku but rather more a hobby project. JobBase can be found [here](https://jobbase.herokuapp.com/).
