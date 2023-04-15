@@ -440,12 +440,15 @@ def webhook(request):
         today = datetime.today()
         one_duration = today + timedelta(days=60)
         
+        print("EXECUTE A")
+        print(f"EXECUTE B {charge['client_reference_id']}")
         # Set the Post to active and reassign dates in case this post is being reactivated
         post = jobPost.objects.get(id=int(charge['client_reference_id']))
         post.active = True
         post.date = today.strftime('%Y-%m-%d')
         post.expiry = one_duration.strftime('%Y-%m-%d')
         post.save()
+        print(f"EXECUTE C {post}")
         
     # ... handle other event types
 
