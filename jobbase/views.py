@@ -20,7 +20,7 @@ from .forms import CVForm
 from recruitment.settings import BASE_DIR
 
 
-YOUR_DOMAIN = 'http://127.0.0.1:8000'
+YOUR_DOMAIN = 'https://jobbase.herokuapp.com'
 # This is your test secret API key.
 stripe.api_key = 'sk_test_51LyumzJDuT7kCtc6Fzg2NCJPRwDpx9mVApdtih5ADgdluK6C1LMr71INGC6G1zzg0IpTaNcUonzQuXkDiWK5nmf7004742kG9K'
 
