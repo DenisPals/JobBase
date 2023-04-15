@@ -431,7 +431,7 @@ def webhook(request):
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
         raise e
-
+    print("UNTIL HERE")
     # Handle the event
     if event['type'] == 'checkout.session.completed':
         charge = event['data']['object']
