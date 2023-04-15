@@ -4,3 +4,5 @@ stripe==3.0.0
 dj-database-url
 whitenoise 
 mysqlclient
+django-storages
+google-cloud-storage
