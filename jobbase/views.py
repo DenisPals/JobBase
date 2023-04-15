@@ -25,7 +25,7 @@ YOUR_DOMAIN = 'https://jobbase.herokuapp.com'
 stripe.api_key = 'sk_test_51LyumzJDuT7kCtc6Fzg2NCJPRwDpx9mVApdtih5ADgdluK6C1LMr71INGC6G1zzg0IpTaNcUonzQuXkDiWK5nmf7004742kG9K'
 
 # This is your Stripe CLI webhook secret for testing your endpoint locally.
-endpoint_secret = 'we_1MxD7SJDuT7kCtc6o5zflj99'
+endpoint_secret = 'whsec_xKZAa2VMnqNOpQbMegiFsjx9omxpQUuo'
 
 
 def index(request):
