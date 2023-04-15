@@ -3,3 +3,4 @@ Django==3.2.14
 stripe==3.0.0
 dj-database-url
 whitenoise 
+mysqlclient
