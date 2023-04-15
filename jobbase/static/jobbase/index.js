@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    alert('hello,world')
+ 
     // Send a request to the server to determine if the user is logged in
     fetch('checklogin')
     .then(response => response.json())
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Prefill profile form if on profile page and add eventlistener to profile Form
-    //prefillProfile()
+    prefillProfile()
     if (document.querySelector('#profileForm') != null) {
 
         document.querySelector('#profileForm').addEventListener('submit', (event) => {
@@ -414,11 +414,11 @@ function myJobListings() {
 
                     let salary;
                     if (jobPosts[i].hourly != 0 && jobPosts[i].annualy != 0) {
-                        salary = `${jobPosts[i].annualy}Â£ per annum,<br>${jobPosts[i].hourly}Â£ per hour`
+                        salary = `${jobPosts[i].annualy}£ per annum,<br>${jobPosts[i].hourly}£ per hour`
                     } else if (jobPosts[i].hourly != 0) {
-                        salary = `${jobPosts[i].hourly}Â£ per hour`
+                        salary = `${jobPosts[i].hourly}£ per hour`
                     } else {
-                        salary = `${jobPosts[i].annualy}Â£ per annum`
+                        salary = `${jobPosts[i].annualy}£ per annum`
                     }
                     
                     let formatDescription = jobPosts[i].jobDescription
@@ -586,7 +586,7 @@ function myJobListings() {
                             </div>
                             <h5 class="mt-4 px-4">Nearly Done</h5>
                             <p class="px-4 mt-1 mb-2 lh-lg">
-                            <strong>Thank you for considering posting a job on our platform.</strong> Please note that we charge a fee of 45Â£ for 60 days of job posting. This fee helps us maintain and improve our website and services for our users.
+                            <strong>Thank you for considering posting a job on our platform.</strong> Please note that we charge a fee of 45£ for 60 days of job posting. This fee helps us maintain and improve our website and services for our users.
 
                             <strong>Our payments are processed securely through Stripe, a trusted and widely used payment processing company.</strong> 
                             This ensures the safety and security of your payment information, as well as the safety and security of our website.
@@ -618,7 +618,7 @@ function myJobListings() {
                         let newI = document.createElement('div')
                         newI.innerHTML = `
                         <div class="input-group mt-4" id="annualTmpA">
-                            <div class="input-group-text">Â£</div>
+                            <div class="input-group-text">£</div>
                             <input type="number" id="annualSalary" min="1200" class="form-control" required>
                         </div>`
                         document.querySelector('#salaryDiv0').append(newI)
@@ -631,7 +631,7 @@ function myJobListings() {
                         let newIn = document.createElement('div')
                         newIn.innerHTML = `
                         <div class="input-group mt-4" id="annualTmpH">
-                            <div class="input-group-text">Â£</div>
+                            <div class="input-group-text">£</div>
                             <input type="number" id="hourlySalary" min="7" class="form-control" required>
                         </div>`
                         document.querySelector('#salaryDiv1').append(newIn)
@@ -782,11 +782,11 @@ function myJobListings() {
                     // Concatenate hourly and annual salary into one variable or just fetch one either
                     let salary;
                     if (post.hourly != 0 && post.annualy != 0) {
-                        salary = `${post.annualy}Â£ per annum,<br>${post.hourly}Â£ per hour`
+                        salary = `${post.annualy}£ per annum,<br>${post.hourly}£ per hour`
                     } else if (post.hourly != 0) {
-                        salary = `${post.hourly}Â£ per hour`
+                        salary = `${post.hourly}£ per hour`
                     } else {
-                        salary = `${post.annualy}Â£ per annum`
+                        salary = `${post.annualy}£ per annum`
                     }
 
                     // Insert data into HTML Tags
@@ -1027,11 +1027,11 @@ function allPosts(action) {
                 
                 let salary;
                 if (selectedPost.hourly != 0 && selectedPost.annualy != 0) {
-                    salary = `${selectedPost.annualy}Â£ per annum,<br>${selectedPost.hourly}Â£ per hour`
+                    salary = `${selectedPost.annualy}£ per annum,<br>${selectedPost.hourly}£ per hour`
                 } else if (selectedPost.hourly != 0) {
-                    salary = `${selectedPost.hourly}Â£ per hour`
+                    salary = `${selectedPost.hourly}£ per hour`
                 } else {
-                    salary = `${selectedPost.annualy}Â£ per annum`
+                    salary = `${selectedPost.annualy}£ per annum`
                 }
 
                 let website = false
@@ -1254,7 +1254,7 @@ function editPost(id) {
                 let newI = document.createElement('div')
                 newI.innerHTML = `
                 <div class="input-group mt-4" id="annualTmpA">
-                    <div class="input-group-text">Â£</div>
+                    <div class="input-group-text">£</div>
                     <input type="number" id="annualSalary" min="1200" class="form-control" required>
                 </div>`
                 document.querySelector('#salaryDiv0').append(newI)
@@ -1267,7 +1267,7 @@ function editPost(id) {
                 let newIn = document.createElement('div')
                 newIn.innerHTML = `
                 <div class="input-group mt-4" id="annualTmpH">
-                    <div class="input-group-text">Â£</div>
+                    <div class="input-group-text">£</div>
                     <input type="number" id="hourlySalary" min="7" class="form-control" required>
                 </div>`
                 document.querySelector('#salaryDiv1').append(newIn)
