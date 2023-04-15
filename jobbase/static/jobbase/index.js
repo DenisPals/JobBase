@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Make sure that we always arrived at the desired location when using a local enviroment
-    if (this.location.href === 'http://127.0.0.1:8000/' || this.location.href === 'http://localhost:8000/') {
+    if (this.location.href === 'https://valentinos-creations.herokuapp.com/') {
         allPosts('allposts')
     }
-    if (this.location.href === 'http://127.0.0.1:8000/mypage' || this.location.href === 'http://localhost:8000/mypage') {
+    if (this.location.href === 'https://valentinos-creations.herokuapp.com/mypage') {
         myJobListings()
     }
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Pass name into message function
-    if (this.location.href === 'http://127.0.0.1:8000/messageview' || this.location.href === 'http://localhost:8000/messageview') {
+    if (this.location.href === 'https://valentinos-creations.herokuapp.com/messageview') {
         fetch('checklogin')
         .then(response => response.json())
         .then(info => {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const substrA = 'list-item'
     const substrB = '#'
     if (str.includes(substrA) || str.includes(substrB)) {
-        this.location.href = 'http://127.0.0.1:8000/'
+        this.location.href = 'https://valentinos-creations.herokuapp.com/'
     }
 
     // Make Continue Buttons on register and login page sensitive to enter key
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // If we are on login Page
-    if (this.location.href === 'http://127.0.0.1:8000/login' || this.location.href === 'http://localhost:8000/login') {
+    if (this.location.href === 'https://valentinos-creations.herokuapp.com/login') {
         document.querySelector('#continueBtn').addEventListener('click', () => {
             if (document.querySelector('#usernameInput').value != '' && document.querySelector('#passwordInput').value === '') {
                 document.querySelector('#usernameInput').classList.add('d-none')
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // If we are on register page
-    if (this.location.href === 'http://127.0.0.1:8000/register' || this.location.href === 'http://localhost:8000/register') {
+    if (this.location.href === 'https://valentinos-creations.herokuapp.com/register') {
 
         document.querySelector('#navBar').classList.add('d-none')
         document.querySelector('#continueBtn').addEventListener('click', () => {
@@ -458,7 +458,7 @@ function myJobListings() {
                 
                     document.querySelector(`#btn-${jobPosts[i].id}`).addEventListener('click', () => {
                         if (!jobPosts[i].active) {
-                            this.location.href = `http://127.0.0.1:8000/create-checkout-session/${jobPosts[i].id}`
+                            this.location.href = `https://valentinos-creations.herokuapp.com/create-checkout-session/${jobPosts[i].id}`
                         } else {
 
                             fetch('deactivate', {
@@ -599,7 +599,7 @@ function myJobListings() {
                                     </svg>
                                 </button>
                             </div>
-                            <a href="http://127.0.0.1:8000/mypage" class="btn btn-outline-secondary btn ms-2 mt-5">
+                            <a href="https://valentinos-creations.herokuapp.com/mypage" class="btn btn-outline-secondary btn ms-2 mt-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
                                 </svg>
@@ -690,7 +690,7 @@ function myJobListings() {
                             .then(response => response.json())
                             .then(id => {
             
-                                this.location.href = `http://127.0.0.1:8000/create-checkout-session/${id}`
+                                this.location.href = `https://valentinos-creations.herokuapp.com/create-checkout-session/${id}`
                             })
                         }
                     })
@@ -1235,7 +1235,7 @@ function editPost(id) {
                     <div class="offset-11 mt-5">
                         <button type="submit" class="btn btn-outline-primary btn-lg" id="continueBtn">Save</button>
                     </div>
-                    <a href="http://127.0.0.1:8000/mypage" class="btn btn-outline-secondary btn ms-2 mt-5">
+                    <a href="https://valentinos-creations.herokuapp.com/mypage" class="btn btn-outline-secondary btn ms-2 mt-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
                         </svg>
@@ -1508,7 +1508,7 @@ function viewApplicants(id) {
         let backBtn = document.createElement('div')
         backBtn.classList.add('container', 'mx-1', 'my-5', 'p-3')
         backBtn.innerHTML = `
-        <a href="http://127.0.0.1:8000/mypage" id="backBtn" class="btn btn-outline-secondary btn">
+        <a href="https://valentinos-creations.herokuapp.com/mypage" id="backBtn" class="btn btn-outline-secondary btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
             </svg>
