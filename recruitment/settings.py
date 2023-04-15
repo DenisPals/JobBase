@@ -86,13 +86,26 @@ WSGI_APPLICATION = 'recruitment.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+'''
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'heroku_5079739d4ffc25f',  
+        'USER': 'bbe2ebf8f8b03c',  
+        'PASSWORD': 'b99a6d33',  
+        'HOST': 'eu-cdbr-west-03.cleardb.net',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
+}  
 
 AUTH_USER_MODEL = "jobbase.User"
 
