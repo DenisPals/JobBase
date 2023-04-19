@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IS_HEROKU = "DYNO" in os.environ
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure--tjmg5q2*cwm1c1frsd*n$n&o#)l!fte!g0lk@)ff4a-eh%y*@'
 
 if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ["SECRET_KEY"]
@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -80,12 +79,25 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'recruitment.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': '',  
+        'USER': '',  
+        'PASSWORD': '',  
+        'HOST': '',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
+}  
+
+WSGI_APPLICATION = 'recruitment.wsgi.application'
 
 AUTH_USER_MODEL = "jobbase.User"
 
@@ -125,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = ''
+STATIC_URL = 'https://storage.googleapis.com/REMOVED/static/'
 
 from google.oauth2 import service_account
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
@@ -133,12 +145,11 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 )
 
 DEFAULT_FILE_STORAGE="storages.backends.gcloud.GoogleCloudStorage"
-GS_PROJECT_ID = ''
-GS_BUCKET_NAME = ''
-MEDIA_ROOT = ""
-UPLOAD_ROOT = ''
-MEDIA_URL = ""
-
+GS_PROJECT_ID = 'projectbuckets'
+GS_BUCKET_NAME = 'REMOVED'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+MEDIA_URL = "https://storage.googleapis.com/REMOVED/"
 
 
 # Default primary key field type
